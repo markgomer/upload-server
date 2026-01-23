@@ -4,7 +4,9 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "dev": "tsx watch --env-file .env src/infra/http/server.ts"
+    "dev": "tsx watch --env-file .env src/infra/http/server.ts",
+    "test": "dotenv -e .env.test -- bun test",
+    "test:watch": "dotenv -e .env.test -- bun test --watch"
   },
   "peerDependencies": {
     "typescript": "^5"
@@ -21,6 +23,7 @@
   "devDependencies": {
     "@biomejs/biome": "2.3.11",
     "@types/bun": "latest",
+    "dotenv-cli": "11.0.0",
     "tsx": "4.21.0"
   }
 }
