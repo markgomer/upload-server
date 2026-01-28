@@ -7,7 +7,6 @@ import {
   serializerCompiler,
   validatorCompiler,
   hasZodFastifySchemaValidationErrors,
-  jsonSchemaTransform
 } from "fastify-type-provider-zod"
 
 import { transformSwaggerSchema } from "./routes/transform-swagger-schema"
@@ -18,7 +17,8 @@ const server = fastify()
 
 server.setValidatorCompiler(validatorCompiler)
 server.setSerializerCompiler(serializerCompiler)
-
+server.register(fastifyCors, { origin: '*' })
+server.register(fastifyMultipart)
 server.setErrorHandler((error, request, reply) => {
   if (hasZodFastifySchemaValidationErrors(error)) {
     return reply.status(400).send({
@@ -26,16 +26,11 @@ server.setErrorHandler((error, request, reply) => {
       issues: error.validation,
     })
   }
-
   // envia error para alguma ferramenta de usabilidade,
   // por exemplo: (Sentry/Datadog/Grafana/CTel)
   console.error(error)
-
   return reply.status(500).send({ message: "Internal server error." })
 })
-
-server.register(fastifyCors, { origin: '*' })
-server.register(fastifyMultipart)
 server.register(fastifySwagger, {
   openapi: {
     info: {
@@ -45,6 +40,8 @@ server.register(fastifySwagger, {
   },
   transform: transformSwaggerSchema
 })
+
+// NOTE: launch the /docs route localhost:3333/docs
 server.register(fastifySwaggerUi, {
   routePrefix: "/docs"
 })
