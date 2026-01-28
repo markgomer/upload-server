@@ -32,7 +32,8 @@ export const uploadImageRoute: FastifyPluginAsyncZod = async (server) => {
         contentStream: uploadedFile.file
       })
       if (isRight(result)) {
-        return reply.status(201).send()
+        console.log(unwrapEither(result))
+        return reply.status(201).send({ message: "File sent."})
       }
       const error = unwrapEither(result)
       switch(error.constructor.name) {
