@@ -31,9 +31,12 @@ export const uploadImageRoute: FastifyPluginAsyncZod = async (server) => {
         contentType: uploadedFile.mimetype,
         contentStream: uploadedFile.file
       })
+      if (uploadedFile.file.truncated) {
+        return reply.status(400).send({ message: "File size limit reached." })
+      }
       if (isRight(result)) {
         console.log(unwrapEither(result))
-        return reply.status(201).send({ message: "File sent."})
+        return reply.status(201).send({ message: "Upload succesful." })
       }
       const error = unwrapEither(result)
       switch(error.constructor.name) {
