@@ -5,8 +5,8 @@
     "": {
       "name": "upload-server",
       "dependencies": {
-        "@aws-sdk/client-s3": "^3.975.0",
-        "@aws-sdk/lib-storage": "^3.975.0",
+        "@aws-sdk/client-s3": "3.975.0",
+        "@aws-sdk/lib-storage": "3.975.0",
         "@fastify/cors": "11.2.0",
         "@fastify/multipart": "9.4.0",
         "@fastify/swagger": "9.6.1",
@@ -15,11 +15,12 @@
         "fastify": "5.7.1",
         "fastify-type-provider-zod": "6.1.0",
         "postgres": "3.4.8",
-        "uuidv7": "^1.1.0",
+        "uuidv7": "1.1.0",
         "zod": "4.3.5",
       },
       "devDependencies": {
         "@biomejs/biome": "2.3.11",
+        "@faker-js/faker": "^10.2.0",
         "@types/bun": "latest",
         "dotenv-cli": "11.0.0",
         "drizzle-kit": "0.31.8",
@@ -190,6 +191,8 @@
     "@esbuild/win32-ia32": ["@esbuild/win32-ia32@0.25.12", "", { "os": "win32", "cpu": "ia32" }, "sha512-HkqnmmBoCbCwxUKKNPBixiWDGCpQGVsrQfJoVGYLPT41XWF8lHuE5N6WhVia2n4o5QK5M4tYr21827fNhi4byQ=="],
 
     "@esbuild/win32-x64": ["@esbuild/win32-x64@0.25.12", "", { "os": "win32", "cpu": "x64" }, "sha512-alJC0uCZpTFrSL0CCDjcgleBXPnCrEAhTBILpeAp7M/OFgoqtAetfBzX0xM00MUsVVPpVjlPuMbREqnZCXaTnA=="],
+
+    "@faker-js/faker": ["@faker-js/faker@10.2.0", "", {}, "sha512-rTXwAsIxpCqzUnZvrxVh3L0QA0NzToqWBLAhV+zDV3MIIwiQhAZHMdPCIaj5n/yADu/tyk12wIPgL6YHGXJP+g=="],
 
     "@fastify/accept-negotiator": ["@fastify/accept-negotiator@2.0.1", "", {}, "sha512-/c/TW2bO/v9JeEgoD/g1G5GxGeCF1Hafdf79WPmUlgYiBXummY0oX3VVq4yFkKKVBKDNlaDUYoab7g38RpPqCQ=="],
 
