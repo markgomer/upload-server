@@ -25,7 +25,6 @@ export async function uploadImage(
     return makeLeft(new InvalidFileFormat)
   }
 
-  // TODO: Carregar imagem para Cloudfare R2
   const { key, url} = await uploadFileToStorage({
     folder: "images",
     fileName,
