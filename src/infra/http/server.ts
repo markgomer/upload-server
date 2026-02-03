@@ -9,8 +9,8 @@ import {
   hasZodFastifySchemaValidationErrors,
 } from "fastify-type-provider-zod"
 
-import { transformSwaggerSchema } from "./routes/transform-swagger-schema"
-import { uploadImageRoute } from "./routes/upload-image"
+import { transformSwaggerSchema } from "@/infra/http/transform-swagger-schema"
+import { uploadImageRoute } from "@/infra/http/routes/upload-image"
 import { env } from "@/env"
 
 const server = fastify()
