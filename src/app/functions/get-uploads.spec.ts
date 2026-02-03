@@ -23,11 +23,11 @@ describe("get-uploads", () => {
     expect(isRight(sut)).toBe(true)
     expect(unwrapEither(sut).total).toEqual(5)
     expect(unwrapEither(sut).uploads).toEqual([
-      expect.objectContaining({ id: upload5.id }),
-      expect.objectContaining({ id: upload4.id }),
-      expect.objectContaining({ id: upload3.id }),
-      expect.objectContaining({ id: upload2.id }),
-      expect.objectContaining({ id: upload1.id }),
+      expect.objectContaining({ id: upload5!.id }),
+      expect.objectContaining({ id: upload4!.id }),
+      expect.objectContaining({ id: upload3!.id }),
+      expect.objectContaining({ id: upload2!.id }),
+      expect.objectContaining({ id: upload1!.id }),
     ])
   })
   it("should be able to get paginated uploads", async () => {
@@ -47,9 +47,9 @@ describe("get-uploads", () => {
     expect(isRight(sut)).toBe(true)
     expect(unwrapEither(sut).total).toEqual(5)
     expect(unwrapEither(sut).uploads).toEqual([
-      expect.objectContaining({ id: upload5.id }),
-      expect.objectContaining({ id: upload4.id }),
-      expect.objectContaining({ id: upload3.id }),
+      expect.objectContaining({ id: upload5!.id }),
+      expect.objectContaining({ id: upload4!.id }),
+      expect.objectContaining({ id: upload3!.id }),
     ])
     
     sut = await getUploads({
@@ -61,8 +61,8 @@ describe("get-uploads", () => {
     expect(isRight(sut)).toBe(true)
     expect(unwrapEither(sut).total).toEqual(5)
     expect(unwrapEither(sut).uploads).toEqual([
-      expect.objectContaining({ id: upload2.id }),
-      expect.objectContaining({ id: upload1.id }),
+      expect.objectContaining({ id: upload2!.id }),
+      expect.objectContaining({ id: upload1!.id }),
     ])
   })
   it("should be able to get sorted uploads", async () => {
@@ -97,11 +97,11 @@ describe("get-uploads", () => {
     expect(isRight(sut)).toBe(true)
     expect(unwrapEither(sut).total).toEqual(5)
         expect(unwrapEither(sut).uploads).toEqual([
-      expect.objectContaining({ id: upload1.id }),
-      expect.objectContaining({ id: upload2.id }),
-      expect.objectContaining({ id: upload3.id }),
-      expect.objectContaining({ id: upload4.id }),
-      expect.objectContaining({ id: upload5.id }),
+      expect.objectContaining({ id: upload1?.id }),
+      expect.objectContaining({ id: upload2!.id }),
+      expect.objectContaining({ id: upload3!.id }),
+      expect.objectContaining({ id: upload4!.id }),
+      expect.objectContaining({ id: upload5!.id }),
     ])
 
     sut = await getUploads({
@@ -113,11 +113,11 @@ describe("get-uploads", () => {
     expect(isRight(sut)).toBe(true)
     expect(unwrapEither(sut).total).toEqual(5)
     expect(unwrapEither(sut).uploads).toEqual([
-      expect.objectContaining({ id: upload5.id }),
-      expect.objectContaining({ id: upload4.id }),
-      expect.objectContaining({ id: upload3.id }),
-      expect.objectContaining({ id: upload2.id }),
-      expect.objectContaining({ id: upload1.id }),
+      expect.objectContaining({ id: upload5?.id }),
+      expect.objectContaining({ id: upload4?.id }),
+      expect.objectContaining({ id: upload3?.id }),
+      expect.objectContaining({ id: upload2?.id }),
+      expect.objectContaining({ id: upload1?.id }),
     ])
   })
 })
