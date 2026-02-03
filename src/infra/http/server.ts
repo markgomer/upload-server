@@ -11,6 +11,7 @@ import {
 
 import { transformSwaggerSchema } from "@/infra/http/transform-swagger-schema"
 import { uploadImageRoute } from "@/infra/http/routes/upload-image"
+import { getUploadsRoute } from "@/infra/http/routes/get-uploads"
 import { env } from "@/env"
 
 const server = fastify()
@@ -46,6 +47,7 @@ server.register(fastifySwaggerUi, {
   routePrefix: "/docs"
 })
 server.register(uploadImageRoute)
+server.register(getUploadsRoute)
 
 console.log(env.DATABASE_URL)
 
