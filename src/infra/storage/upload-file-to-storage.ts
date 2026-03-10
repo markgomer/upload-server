@@ -36,7 +36,7 @@ export async function uploadFileToStorage(input: Params) {
   })
   await upload.done()
   return {
-    key: fileName,
+    key: uniqueFileName,
     url: new URL(uniqueFileName, env.CLOUDFARE_PUBLIC_URL).toString()
   }
 }
