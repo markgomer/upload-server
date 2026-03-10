@@ -12,7 +12,8 @@
     "db:studio": "drizzle-kit studio",
     "db:migrate:test": "dotenv -e .env.test -- drizzle-kit migrate",
     "pretest": "bun run db:migrate:test",
-    "pretest:watch": "bun run db:migrate:test"
+    "pretest:watch": "bun run db:migrate:test",
+    "build": "tsup-node"
   },
   "peerDependencies": {
     "typescript": "^5"
@@ -24,7 +25,7 @@
     "@fastify/multipart": "9.4.0",
     "@fastify/swagger": "9.6.1",
     "@fastify/swagger-ui": "5.2.4",
-    "csv-stringify": "^6.6.0",
+    "csv-stringify": "6.6.0",
     "dayjs": "1.11.19",
     "drizzle-orm": "0.45.1",
     "fastify": "5.7.1",
@@ -39,6 +40,7 @@
     "@types/bun": "latest",
     "dotenv-cli": "11.0.0",
     "drizzle-kit": "0.31.8",
+    "tsup": "8.5.1",
     "tsx": "4.21.0"
   }
 }
