@@ -1,12 +1,14 @@
 # upload-server
 
-To install dependencies:
+Upload images to Cloudfare R2 bucket.
+
+### To install dependencies:
 
 ```bash
 bun install
 ```
 
-To run:
+### To run:
 
 ```bash
 bun run index.ts
