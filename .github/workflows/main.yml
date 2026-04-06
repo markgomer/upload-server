@@ -3,7 +3,7 @@ name: widget-server pipe
 on:
   push:
     branches:
-      - 'main'
+      - 'master'
 
 jobs:
   Build:
