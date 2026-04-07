@@ -18,7 +18,7 @@ jobs:
         id: configure-aws-credentials
         uses: aws-actions/configure-aws-credentials@v6
         with:
-          # INFO: grab the keys on AWS (security >> access keys);
+          # grab the keys on AWS (security >> access keys);
           # put them as Repository secrets on GH
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
@@ -28,10 +28,22 @@ jobs:
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v2
 
+      - name: Generate tag
+        id: generate-tag
+        # $GITHUB_OUTPUT here will be available as "steps.generate-tag.outputs"
+        # while the "sha" variable, as steps.generate-tag.outputs.sha
+        # $GITHUB_SHA is the commit SHA
+        run: |
+          SHA=$(echo $GITHUB_SHA | head -c7)
+          echo "sha=$SHA" >> $GITHUB_OUTPUT
+
       - name: Build and push image to AWS ECR
         id: build-push-image
+        env:
+          ECR_REGISTRY: ${{steps.login-ecr.outputs.registry}}
+          # We must register this on Github repo variables
+          ECR_REPOSITORY: ${{ vars.ECR_REPOSITORY }}
+          IMAGE_TAG: ${{ steps.generate-tag.outputs.sha }}
         run: |
-          docker build -t widget-server:v2 .
-          docker tag widget-server:v2 533003975847.dkr.ecr.us-east-2.amazonaws.com/rocketseat/widget-server:v3
-          docker push 533003975847.dkr.ecr.us-east-2.amazonaws.com/rocketseat/widget-server:v3
-
+          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
