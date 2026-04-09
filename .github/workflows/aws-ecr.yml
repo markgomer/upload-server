@@ -14,6 +14,16 @@ jobs:
         id: checkout
         uses: actions/checkout@v6
 
+      - name: Setup Bun
+        id: bun-setup
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: Install dependencies
+        id: dep-install
+        run: bun i
+
       - name: Configure AWS Credentials
         id: configure-aws-credentials
         uses: aws-actions/configure-aws-credentials@v6
