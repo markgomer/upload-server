@@ -1,4 +1,18 @@
+# podman compose up --build -d
 services:
+  app:
+    build: . # can be . or ./something
+    container-name: widget-server
+    ports:
+      - 3000:3333
+    environment:
+      - CLOUDFARE_ACCOUNT_ID=#
+      - CLOUDFARE_ACCESS_KEY_ID=#
+      - CLOUDFARE_SECRET_ACCESS_KEY=#
+      - CLOUDFARE_BUCKET=#
+      - CLOUDFARE_PUBLIC_URL=http://localhost
+      - DATABASE_URL=postgresql://docker:docker@localhost:5432/upload_test
+
   pg:
     image: bitnami/postgresql:latest
     ports:
