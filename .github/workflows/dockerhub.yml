@@ -9,10 +9,10 @@ jobs:
   Build:
     name: Build
     runs-on: ubuntu-latest
-  #   steps:
-  #     - name: Checkout
-  #       id: checkout
-  #       uses: actions/checkout@v6
+    steps:
+      - name: Checkout
+        id: checkout
+        uses: actions/checkout@v6
   #
   #     - name: Login to DockerHub
   #       id: login-dockerhub
