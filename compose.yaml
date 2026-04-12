@@ -1,8 +1,8 @@
 # podman compose up --build -d
 services:
   app:
-    build: . # can be . or ./something
-    container-name: widget-server
+    build: .
+    container_name: widget-server
     ports:
       - 3000:3333
     environment:
@@ -11,15 +11,34 @@ services:
       - CLOUDFARE_SECRET_ACCESS_KEY=#
       - CLOUDFARE_BUCKET=#
       - CLOUDFARE_PUBLIC_URL=http://localhost
-      - DATABASE_URL=postgresql://docker:docker@localhost:5432/upload_test
+      - DATABASE_URL=postgresql://docker:docker@db:5432/widget_server
+    networks:
+      - widget
+    depends_on:
+      - db
 
-  pg:
-    image: bitnami/postgresql:latest
+  db:
+    image: postgres:16
+    container_name: postgres
     ports:
-      - '5432:5432'
+      - 5432:5432
     environment:
       - POSTGRES_USER=docker
       - POSTGRES_PASSWORD=docker
-      - POSTGRES_DB=upload
+      - POSTGRES_DB=widget_server
     volumes:
-      - './docker:/docker-entrypoint-initdb.d:Z'
+      - db:/var/lib/postgresql/data
+    networks:
+      - widget
+      - db
+
+# I'm using the default drivers for each,
+# we could hide them and it would be inferred automatically
+volumes:
+  db:
+    driver: local
+networks:
+  widget:
+    driver: bridge
+  db:
+    driver: bridge
